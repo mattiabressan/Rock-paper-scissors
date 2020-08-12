@@ -4,13 +4,75 @@
     <body>
         <script>
 
-            function computerPlay(playerSelection,computerSelection){
-             let playerSelection =  prompt("Make your choice","");
-             let playerSelection = playerSelection.toLowerCase();
-             const Choices = ["rock","paper","scissors"];
-            
+
+
+            function game(){
+                let score = 0
+              for(i=0;i<=5;i++){
+                function playerPlay(){
+                let playerChoice = prompt("Make your choice","");
+                playerChoice = playerChoice.toLowerCase();
+             
+                if (playerChoice == "rock" || playerChoice == "paper" || playerChoice == "scissors"){
+                    return playerChoice;
+                }
+                else{
+                    playerChoice = prompt("Insert a correct value"," ");
+                    return playerChoice;
+                } 
+            }
+
+            function computerPlay(){
+                let computerChoice = ["rock","paper","scissors"]
+                let choice = computerChoice[Math.floor(Math.random() * computerChoice.length)];
+                return choice;
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection == computerSelection){
+                    console.log("Tied game")
+                    score++
+                 }
+                if (playerSelection == "rock" && computerSelection == "paper"){
+                    console.log("You Lose! Paper beats rock")
+                }
+                else if (playerSelection == "rock" && computerSelection == "scissors"){
+                    console.log("You Win! Rock beats scissors")
+                    score +=2
+                }
+                else if (playerSelection == "paper" && computerSelection == "scissors"){
+                    console.log("You Lose! Scissors beats paper")
+                }
+                else if (playerSelection == "paper" && computerSelection == "rock"){
+                    console.log("You Win! Paper beats rock")
+                    score +=2
+                }
+                else if (playerSelection == "scissors" && computerSelection == "paper"){
+                    console.log("You Win! Scissors beats paper")
+                    score +=2
+                }
+                else if (playerSelection == "scissors" && computerSelection == "rock"){
+                    console.log("You Lose! Rock beats scissors")
+                }
+            }
+
+            const playerSelection = playerPlay()
+            const computerSelection = computerPlay()
+            console.log("Computer selection is " + computerSelection)
+            playRound(playerSelection, computerSelection)
+            }
+            if (score > 5){
+                console.log("\n You won the game")
+            }
+            else{
+                console.log("\n You lose the game")
+            }
 
             }
+
+game();
+   
+            
 
         </script>
     </body>
